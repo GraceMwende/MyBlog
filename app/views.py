@@ -7,7 +7,6 @@ from .request import get_quotes
 def index():
   """view root page function that returns index page and its data"""
   quotes=get_quotes()
-  print(quotes)
 
   return render_template('index.html', quotes= quotes)
 
