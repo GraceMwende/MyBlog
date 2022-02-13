@@ -16,28 +16,13 @@ def get_quotes():
 
     quotes_results = None
 
-    quotes_result_list = get_quotes_response
-    quotes_results = process_results(quotes_result_list)
+  if get_quotes_response:
+    author = get_quotes_response.get('author')
+    id = get_quotes_response.get('id')
+    quote = get_quotes_response.get('quote')
+    permalink = get_quotes_response.get('permalink')
 
-  return quotes_results
-
-def process_results(quote_list):
-  """Function that processes the quote result and transform them to a list of objects
-  Args:
-      quote_list :A list of dictionaries that contains quote details
-  Returns:
-      quotes_results:A list of quotes object
-  """
-
-  quotes_results = []
-  for quote_item in quote_list:
-    author = quote_item.get('author')
-    id = quote_item.get('id')
-    quote = quote_item.get('quote')
-    permalink = quote_item.get('permalink')
-
-    if quote:
-      quote_object = Quote(author,id,quote,permalink)
-      quotes_results.append(quote_object)
+    quotes_results = Quote(author,id,quote,permalink)
+    
 
   return quotes_results
