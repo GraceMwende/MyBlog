@@ -1,6 +1,5 @@
 import unittest
-from models import quote
-Quote = quote.Quote 
+from app.models import Quote
 
 class Quotestest(unittest.TestCase):
   """Test class to test beaviour of quotes class"""
