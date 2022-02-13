@@ -1,9 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Quotes</h2>
+<!-- <h2>Quotes</h2>
 <ul>
   <li>{{quotes.quote}}</li>
   <p>{{quotes.author}}</p>
-</ul>
+</ul> -->
+<section class="vh-50" style="background-color: #CDC4F9;">
+  <div class="container py-4 h-50">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-10 col-xl-8">
+
+        <div class="card rounded-3">
+          <div class="card-body p-5">
+
+            <div class="d-flex justify-content-center mb-4">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-quotes/bulb.webp" alt="Bulb"
+                width="100">
+            </div>
+            <figure class="text-center mb-0">
+              <blockquote class="blockquote mb-4">
+                <p>
+                  <span class="font-italic">{{quotes.quote}}</span>
+                </p>
+              </blockquote>
+              <figcaption class="blockquote-footer mb-0">
+                {{quotes.author}}
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

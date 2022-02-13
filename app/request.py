@@ -16,13 +16,13 @@ def get_quotes():
 
     quotes_results = None
 
-  if get_quotes_response:
-    author = get_quotes_response.get('author')
-    id = get_quotes_response.get('id')
-    quote = get_quotes_response.get('quote')
-    permalink = get_quotes_response.get('permalink')
+    if get_quotes_response:
+      author = get_quotes_response.get('author')
+      id = get_quotes_response.get('id')
+      quote = get_quotes_response.get('quote')
+      permalink = get_quotes_response.get('permalink')
 
-    quotes_results = Quote(author,id,quote,permalink)
-    
+      quotes_results = Quote(author,id,quote,permalink)
+      
 
   return quotes_results
