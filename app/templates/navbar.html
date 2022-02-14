@@ -8,7 +8,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#"><i class="fa fa-home" style="color:blue"></i>Home <span
+            class="sr-only">(current)</span></a>
       </li>
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
@@ -18,10 +19,11 @@
     <ul class="nav navbar-nav navbar-right">
       {% if current_user.is_authenticated %}
       <!-- <li style="color:white;padding: 15px;">{{current_user.username}}</li> -->
-      <li class="mr-sm-2"><a href="{{url_for('main.profile', uname=current_user.username)}}">Profile</a></li>
-      <li><a href="{{url_for('auth.logout')}}">Sign Out</a></li>
+      <li class="mr-sm-2"><a href="{{url_for('main.profile', uname=current_user.username)}}"><i class="fa fa-user"
+            style="color:white"></i>Profile</a></li>
+      <li><a href="{{url_for('auth.logout')}}"><i class="fa fa-sign-out" style="color:white"></i>Sign Out</a></li>
       {% else %}
-      <li><a href="{{url_for('auth.login')}}">Sign In</a></li>
+      <li><a href="{{url_for('auth.login')}}"><i class="fa fa-sign-out" style="color:white"></i>Sign In</a></li>
       {% endif %}
     </ul>
   </div>
