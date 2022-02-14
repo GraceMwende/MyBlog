@@ -14,6 +14,3 @@ class BlogTest(unittest.TestCase):
 
     def test_instance(self):
         self.assertTrue(isinstance(self.new_blog,Blog))
-
-    def tearDown(self):
-      Blog.

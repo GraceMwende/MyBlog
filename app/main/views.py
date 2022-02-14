@@ -3,6 +3,7 @@ from . import main
 from ..request import get_quotes
 from ..models import Blog
 from .forms import BlogForm
+from flask_login import login_required
 
 #views
 @main.route('/')
@@ -18,6 +19,7 @@ def blog(blog_id):
   return render_template('blog.html')
 
 @main.route('/blog/new', methods=['POST','GET'])
+@login_required
 def new_blog():
   form = BlogForm()
 
