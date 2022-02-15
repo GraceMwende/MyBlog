@@ -3,7 +3,7 @@ from . import main
 from ..request import get_quotes
 from ..models import Blog,User
 from .forms import BlogForm,UpdateProfile
-from flask_login import login_required
+from flask_login import login_required,current_user
 from .. import db,photos
 
 #views
@@ -19,28 +19,34 @@ def blog(blog_id):
   """view blog function that return the blog details page and its data"""
   return render_template('blog.html')
 
-@main.route('/blog/new', methods=['POST','GET'])
+@main.route('/blog/new/<int:id>', methods=['POST','GET'])
 @login_required
-def new_blog():
+def new_blog(id): 
   form = BlogForm()
+  user = User.query.filter_by(id=id).first()
 
   if form.validate_on_submit():
     title = form.title.data
     blog = form.blog.data
-    new_blog = Blog(title,blog)
+    
+    # blog instance       
+    new_blog = Blog(title=title,blog=blog,user=current_user)
+
     new_blog.save_blog()
-    return redirect(request.url)
+    # return redirect(request.url)
+    return redirect(url_for('.profile', uname=user.username))
 
   return render_template('new_blog.html', blog_form = form)
 
 @main.route('/user/<uname>')  
 def profile(uname):
   user = User.query.filter_by(username=uname).first()
+  blogs = Blog.get_blogs(user.id)
 
   if user is None:
     abort(404)
 
-  return render_template('profile/profile.html', user=user)
+  return render_template('profile/profile.html', uname=user.username,user=user, blogs=blogs)
 
 @main.route('/user/<uname>/update', methods=['GET','POST'])
 @login_required

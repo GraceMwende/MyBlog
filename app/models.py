@@ -22,6 +22,8 @@ class User(UserMixin,db.Model):
   bio = db.Column(db.String(255))
   profile_pic_path = db.Column(db.String())
   role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+  blogs = db.relationship('Blog', backref='user', lazy='dynamic')
+  comments = db.relationship('Comments', backref='user',lazy='dynamic')
 
   @property
   def password(self):
@@ -51,27 +53,53 @@ class Role(db.Model):
   def __repr__(self):
     return f'user{self.name}'
 
-class Blog:
-  all_Blogs = []
+class Blog(db.Model):
+  __tablename__ = 'blogs'
 
-  def __init__(self,blog_id,title,blog):
-    self.blog_id = blog_id
-    self.title = title
-    self.blog = blog
+  id = db.Column(db.Integer, primary_key = True)
+  title = db.Column(db.String)
+  blog = db.Column(db.String)
+  user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+  comments = db.relationship('Comments',backref='blog', lazy='dynamic')
 
   def save_blog(self):
-    Blog.all_Blogs.append(self)
-
-  @classmethod
-  def clear_blogs(cls):
-    Blog.all_Blogs.clear()
+    db.session.add(self)
+    db.session.commit()
 
   @classmethod
   def get_blogs(cls,id):
-    response = []
-     
-    for blog in cls.all_Blogs:
-      if blog.id == id:
-        response.append(blog)
+    blogs = Blog.query.filter_by(user_id=id).all()
+    return blogs
 
-      return response
+class Comments(db.Model):
+  __tablename__ = 'comments'
+
+  id = db.Column(db.Integer, primary_key = True)
+  comment = db.Column(db.String)
+  blog_id = db.Column(db.Integer,db.ForeignKey('blogs.id'))
+  user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+
+# class Blog:
+#   all_Blogs = []
+
+#   def __init__(self,blog_id,title,blog):
+#     self.blog_id = blog_id
+#     self.title = title
+#     self.blog = blog
+
+#   def save_blog(self):
+#     Blog.all_Blogs.append(self)
+
+#   @classmethod
+#   def clear_blogs(cls):
+#     Blog.all_Blogs.clear()
+
+#   @classmethod
+#   def get_blogs(cls,id):
+#     response = []
+     
+#     for blog in cls.all_Blogs:
+#       if blog.id == id:
+#         response.append(blog)
+
+#       return response
