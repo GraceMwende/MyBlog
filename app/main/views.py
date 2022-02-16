@@ -34,9 +34,19 @@ def new_blog(id):
 
     new_blog.save_blog()
     # return redirect(request.url)
-    return redirect(url_for('.profile', uname=user.username))
+    return redirect(url_for('.view_blogs', uname=user.username))
 
   return render_template('new_blog.html', blog_form = form)
+
+@main.route('/blog/all/<uname>')  
+def view_blogs(uname):
+  user = User.query.filter_by(username=uname).first()
+  blogs = Blog.get_blogs(user.id)
+
+  if user is None:
+    abort(404)
+
+  return render_template('all_blogs.html', uname=user.username,user=user, blogs=blogs)
 
 @main.route('/user/<uname>')  
 def profile(uname):
