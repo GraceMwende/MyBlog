@@ -8,8 +8,9 @@
   </div>
   <div class="card-body">
     <h5 class="card-title">{{blog.title}}</h5>
+    <a href="/pitch/comment/new/{{blog.id}}"><button class="btn btn-primary text-right">View Blog</button></a>
     <p class="card-text">{{blog.blog}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <a href="/blog/comment/{{blog.id}}" class="btn btn-primary">Add Comment</a>
   </div>
 </div>
 {% endfor %}

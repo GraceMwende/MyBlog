@@ -79,6 +79,18 @@ class Comments(db.Model):
   blog_id = db.Column(db.Integer,db.ForeignKey('blogs.id'))
   user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
+  def save_comment(self):
+    db.session.add(self)
+    db.session.commit()
+
+  @classmethod
+  def get_comments(cls,id):
+    comments = Comments.query.filter_by(blog_id =id).all()
+    return comments
+
+  def __repr__(self):
+    return f'Comment {self.comment}'
+
 # class Blog:
 #   all_Blogs = []
 
