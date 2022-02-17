@@ -12,8 +12,8 @@ import markdown2
 def index():
   """view root page function that returns index page and its data"""
   quotes=get_quotes()
-
-  return render_template('index.html', quotes= quotes)
+  allBlogs = Blog.query.all()
+  return render_template('index.html', quotes= quotes, blogs=allBlogs)
 
 @main.route('/blog/<int:blog_id>')
 def blog(blog_id):

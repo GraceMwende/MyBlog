@@ -38,4 +38,11 @@
 </section>
 
 <a href="/blog/new/{{current_user.id}}"><button class="btn btn-primary">Create Blog</button></a>
+
+{% for blog in blogs %}
+<div class="card">
+  <h2>{{blog.title}}</h2>
+  <p>{{blog.blog}}</p>
+</div>
+{% endfor %}
 {% endblock %}
