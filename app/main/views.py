@@ -5,6 +5,7 @@ from ..models import Blog,User,Comments
 from .forms import BlogForm,UpdateProfile,CommentForm
 from flask_login import login_required,current_user
 from .. import db,photos
+import markdown2
 
 #views
 @main.route('/')
@@ -107,4 +108,21 @@ def new_comment(id):
     return redirect(request.url)
   
   return render_template('new_comment.html', comment_form= form,blog=blogs,comments_blog=comments_blog)
+
+@main.route('/comment/<int:id>')
+def single_comment(id):
+    comment = Comments.query.get(id)
+    if comment is None:
+        abort(404)
+    format_comment = markdown2.markdown(comment.comment,extras=["code-friendly","fenced-code-blocks"])
+    return render_template('comment.html',comment=comment,format_comment=format_comment)
+
+@main.route('/blog/<int:id>')
+def single_blog(id):
+    blog=Blog.query.get(id)
+    if blog is None:
+        abort(404)
+    format_blog = markdown2.markdown(blog.blog,extras=["code-friendly", "fenced-code-blocks"])
+    return render_template('blogging.html',blog = blog,format_blog=format_blog)
+
 
