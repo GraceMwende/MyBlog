@@ -9,6 +9,7 @@
 
     {% for comment in comments_blog %}
     {{comment.comment}}
+    {{comment.user.username}}
     {% endfor %}
   </div>
 
