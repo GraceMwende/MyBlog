@@ -5,10 +5,10 @@
 https://blogs-254app.herokuapp.com/
 
 #### Application Description
-Personal blogging website where you can create and share your opinions and other users can read and comment on them. Additionally, add a feature that displays random quotes to inspire your users. 
 
-- Displays random quotes
+Personal blogging website where you can create and share your opinions and other users can read and comment on them. Additionally, add a feature that displays random quotes to inspire your users.
 
+Displays random quotes
 
 #### By **List of contributors**
 
@@ -23,7 +23,7 @@ Personal blogging website where you can create and share your opinions and other
 - User see random quotes on the site
 - Writer Sign in to the blog.
 - Writer create a blog from the application.
--  Writer As a writer, I would like to delete comments that I find insulting or degrading.
+- Writer As a writer, I would like to delete comments that I find insulting or degrading.
 - As a writer, I would like to update or delete blogs I have created.
 
 @GraceMwende
