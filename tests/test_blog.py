@@ -14,3 +14,11 @@ class BlogTest(unittest.TestCase):
 
     def test_instance(self):
         self.assertTrue(isinstance(self.new_blog,Blog))
+
+    def test_init(self):
+        """check if the object is instantiated,correctly"""
+        self.assertEqual(self.new_blog.id, 5)
+        self.assertEqual(self.new_blog.category, "promotion")
+        self.assertEqual(self.new_blog.title, "Banking success")
+        self.assertEqual(self.new_blog.decription, "This is where great minds meet and great things happen")
+
